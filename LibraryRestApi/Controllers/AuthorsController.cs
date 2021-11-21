@@ -1,4 +1,5 @@
 ﻿using LibraryRestApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace LibraryRestApi.Controllers
         {
         }
         [HttpGet()]
+        [Authorize(Roles = "0")]
         public List<Author> Get()
         {
                return db.Authors.ToList();

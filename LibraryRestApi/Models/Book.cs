@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LibraryRestApi.Models
@@ -27,13 +28,16 @@ namespace LibraryRestApi.Models
         /// Возрастное ограничение
         /// </summary>
         public byte AgeLimit { get; set; }
+        [JsonIgnore()]
         public virtual HashSet<Lending> Lendings  { get; set; }
-        
         public Guid PublisherID { get; set; }
+        [JsonIgnore()]
         public virtual Publisher Publisher { get; set; }
         public Guid GenreID { get; set; }
+        [JsonIgnore()]
         public virtual Genre Genre { get; set; }
         public Guid AuthorID { get; set; }
+        [JsonIgnore()]
         public virtual Author Author { get; set; }
 
 
