@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LibraryRestApi.Attributies;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace LibraryRestApi.Controllers
     /// </summary>
     [ApiController()]
     [Route("api/[controller]")]
+    [ExceptionLoggining()]
     public abstract class Controller:ControllerBase
     {
     }
