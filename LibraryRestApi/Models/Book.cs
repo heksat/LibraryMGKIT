@@ -18,6 +18,9 @@ namespace LibraryRestApi.Models
         /// Год издания
         /// </summary>
         public short YearEdition { get; set; }
+        //Количество взятых книш
+        public short UsedCount { get; set; }
+
         //Количество книг
         public short Count { get; set; }
         /// <summary>

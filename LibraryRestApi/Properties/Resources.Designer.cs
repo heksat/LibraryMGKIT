@@ -61,11 +61,14 @@ namespace LibraryRestApi.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to test.sql.
+        ///   Looks up a localized string similar to --Authors
+        ///insert into LibraryMGKIT.dbo.Authors (ID,LName,FName,SName,BirthDay,Gender) values (N&apos;DBA53807-9E52-40DE-91F8-5DE9211252F3&apos;,N&apos;Толстой&apos;,N&apos;Лев&apos;,N&apos;Николаевич&apos;,&apos;1862.09.09 0:00:00&apos;,N&apos;м&apos;)
+        ///insert into LibraryMGKIT.dbo.Authors (ID,LName,FName,BirthDay,Gender) values (N&apos;FB904AF2-8BE5-455D-9001-9FFDE4CFCD92&apos;,N&apos;Таненбаум&apos;,N&apos;Эндрю&apos;,&apos;1944.03.16 0:00:00&apos;,N&apos;м&apos;)
+        ///insert into LibraryMGKIT.dbo.Authors (ID,LName,FName,BirthDay,Gender) values (N&apos;31B4FF79-C54E-463A-9ADB-04EE38BF9031&apos;,N&apos;Макконнелл&apos;,N&apos;Стив&apos;,&apos;1962.09. [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string String2 {
+        internal static string UpdateToUP001 {
             get {
-                return ResourceManager.GetString("String2", resourceCulture);
+                return ResourceManager.GetString("UpdateToUP001", resourceCulture);
             }
         }
     }

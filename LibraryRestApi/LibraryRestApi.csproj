@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Folder Include="Configuration\" />
-    <Folder Include="Scripts\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Scripts\test.sql">
+    <None Update="Scripts\UpdateToUP001.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

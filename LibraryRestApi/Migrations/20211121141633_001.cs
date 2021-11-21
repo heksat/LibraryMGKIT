@@ -14,8 +14,8 @@ namespace LibraryRestApi.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
-                    LName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BirthDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(1)", nullable: false)
@@ -104,8 +104,8 @@ namespace LibraryRestApi.Migrations
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RoleID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BirthDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(1)", nullable: false)
@@ -178,11 +178,8 @@ namespace LibraryRestApi.Migrations
                 name: "IX_Users_RoleID",
                 table: "Users",
                 column: "RoleID");
-            using (StreamReader reader = new StreamReader($"Scripts\\{Resources.String2}"))
-            {
-                string sqlResult = reader.ReadToEnd();
-                migrationBuilder.Sql(sqlResult);
-            }
+            string sqlResult = Resources.UpdateToUP001;
+            migrationBuilder.Sql(sqlResult);
 
         }
 
