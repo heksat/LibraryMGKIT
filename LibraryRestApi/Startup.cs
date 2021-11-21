@@ -1,4 +1,5 @@
 using LibraryRestApi.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,9 @@ namespace LibraryRestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<DB>(options => options.UseSqlServer(connection));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -49,6 +53,7 @@ namespace LibraryRestApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

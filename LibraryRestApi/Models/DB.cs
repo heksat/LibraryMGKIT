@@ -8,7 +8,9 @@ namespace LibraryRestApi.Models
 {
     public class DB: DbContext
     {
-        private string con = "Server=HEKSAT\\SQLEXPRESS;Database=LibraryMGKIT;Trusted_Connection=True;";
+        public DB(DbContextOptions<DB> options): base(options)
+        {
+        }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Genre> Genres { get; set; }
@@ -16,12 +18,5 @@ namespace LibraryRestApi.Models
         public DbSet<Lending> Lendings { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DB()
-        {
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(con);
-        }
     }
 }

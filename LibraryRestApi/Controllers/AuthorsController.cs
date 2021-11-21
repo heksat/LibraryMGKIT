@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace LibraryRestApi.Controllers
 {
-    public class AuthorsController : Controller
+    public class AuthorsController : Controller    
     {
+        public AuthorsController(DB context) : base(context)
+        {
+        }
         [HttpGet()]
         public List<Author> Get()
         {
-            using (var db = new DB())
-            {
                return db.Authors.ToList();
-            }
         }
     }
 }

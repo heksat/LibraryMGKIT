@@ -8,30 +8,27 @@ using System.Threading.Tasks;
 
 namespace LibraryRestApi.Controllers
 {
-    public class BooksController:Controller
+    public class BooksController : Controller
     {
+        public BooksController(DB context) : base(context)
+        {
+        }
         [HttpGet()]
         public async Task<List<Book>> GetBooks()
         {
-            using (var db = new DB())
-            {
-                var list =  await db.Books.ToListAsync();
-                return list;
-            }
+            var list = await db.Books.ToListAsync();
+            return list;
         }
         [HttpPost()]
         public async Task<ActionResult<Book>> CreateBook(Book book)
         {
-            using (var db = new DB())
+            if (book == null)
             {
-                if (book == null)
-                {
-                    return BadRequest();
-                }
-                db.Books.Add(book);
-                await db.SaveChangesAsync();
-                return Ok(book);
+                return BadRequest();
             }
+            db.Books.Add(book);
+            await db.SaveChangesAsync();
+            return Ok(book);
         }
 
     }
