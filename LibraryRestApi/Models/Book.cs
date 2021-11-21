@@ -28,6 +28,14 @@ namespace LibraryRestApi.Models
         /// </summary>
         public byte AgeLimit { get; set; }
         public virtual HashSet<Lending> Lendings  { get; set; }
+        
+        public Guid PublisherID { get; set; }
+        public virtual Publisher Publisher { get; set; }
+        public Guid GenreID { get; set; }
+        public virtual Genre Genre { get; set; }
+        public Guid AuthorID { get; set; }
+        public virtual Author Author { get; set; }
+
 
 
     }

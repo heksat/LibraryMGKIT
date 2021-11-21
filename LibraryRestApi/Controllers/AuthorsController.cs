@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryRestApi.Controllers
 {
-    [ApiController()]
-    [Route("api/[controller]")]
-    public class AuthorController : ControllerBase
+    public class AuthorsController : Controller
     {
         [HttpGet()]
         public List<Author> Get()
