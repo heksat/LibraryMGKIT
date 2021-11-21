@@ -1,0 +1,1 @@
+﻿insert into LibraryMGKIT.dbo.Authors (LName,FName,SName,BirthDay,Gender) values (N'Пушкин',N'Александр',N'Сергеевич','1999.07.25 0:00:00',N'м')
