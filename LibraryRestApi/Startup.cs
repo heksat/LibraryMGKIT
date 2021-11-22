@@ -32,7 +32,7 @@ namespace LibraryRestApi
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DB>(options => options.UseLazyLoadingProxies().UseSqlServer(connection));
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x=>x.ExpireTimeSpan = new TimeSpan(0,30,0));
             services.AddControllers().AddJsonOptions(options => {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
