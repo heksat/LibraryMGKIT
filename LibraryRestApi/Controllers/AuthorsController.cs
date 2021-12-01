@@ -16,7 +16,7 @@ namespace LibraryRestApi.Controllers
         }
         [HttpGet()]
         [Route("authors")]
-        [Authorize(Roles = "0")]
+       // [Authorize(Roles = "0")]
         public List<Author> Get()
         {
             return db.Authors.ToList();

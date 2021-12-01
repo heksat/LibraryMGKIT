@@ -34,7 +34,8 @@ namespace LibraryRestApi
             services.AddDbContext<DB>(options => options.UseLazyLoadingProxies().UseSqlServer(connection));
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x=>x.ExpireTimeSpan = new TimeSpan(0,30,0));
             services.AddControllers().AddJsonOptions(options => {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
             services.AddSwaggerGen(c =>
             {
