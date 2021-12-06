@@ -1,26 +1,21 @@
 package com.example.librarymgkitclient
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.CookieManager
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.example.librarymgkitclient.Models.LoginModel
+import com.example.librarymgkitclient.RetroFit.Companion.cookie
+import com.example.librarymgkitclient.RetroFit.Companion.publicapi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
 import java.util.*
+import java.util.Calendar.getInstance
 
-public interface APILibraryMGKIT{
-    @GET("/api/Authors/authors")
-    fun logIn(): Call<MutableList<Author>>
-
-}
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,24 +23,32 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
        // var gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.).create()
 
-        var retrofit = Retrofit.Builder().baseUrl("http://192.168.0.202:57702/").addConverterFactory(
-            GsonConverterFactory.create()).build()
-        var publictest = retrofit.create(APILibraryMGKIT::class.java)
+
         var but = findViewById<Button>(R.id.LogIn)
         var list = mutableListOf<Author>()
+        var email = findViewById<EditText>(R.id.etEmail)
+        var pass = findViewById<EditText>(R.id.etPass)
+        val intent = Intent(this,Menu::class.java)
         but.setOnClickListener(){
-            publictest.logIn().enqueue(object :Callback<MutableList<Author>>{
+            var model = LoginModel()
+            model.Email = email.text.toString()
+            model.Password = pass.text.toString()
+            publicapi.logIn(model).enqueue(object :Callback<Unit>{
                 override fun onResponse(
-                    call: Call<MutableList<Author>>,
-                    response: Response<MutableList<Author>>
+                    call: Call<Unit>,
+                    response: Response<Unit>
                 ) {
-                    var result = response.body()
-                    if(result!=null) {
-                        list = result
+                    var result = response.isSuccessful
+                    if(result) {
+                        CookieManager.getInstance().getCookie("http://192.168.0.202:57702/")
+                        startActivity(intent)
+                    }
+                    else{
+                        Toast.makeText(this@MainActivity, "Ошибка",Toast.LENGTH_LONG)
                     }
                 }
 
-                override fun onFailure(call: Call<MutableList<Author>>, t: Throwable) {
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
                     Toast.makeText(this@MainActivity, "Ошибка",Toast.LENGTH_SHORT)
                 }
             })

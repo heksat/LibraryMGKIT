@@ -12,7 +12,7 @@ namespace LibraryRestApi.Controllers
     /// <summary>
     /// Абстрактный класс для всех контроллеров
     /// </summary>
-   // [Authorize]
+    [Authorize]
     [ApiController()]
     [Route("api/[controller]")]
     [ExceptionLoggining()]

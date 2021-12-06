@@ -40,6 +40,17 @@ namespace LibraryRestApi.Models
         [JsonIgnore()]
         public virtual Author Author { get; set; }
 
+        public BookModel ToBookModel()
+        {
+            return new BookModel()
+            {
+                ID = ID,
+                Name = Title,
+                Author = $"{Author.LName} {Author.FName[0]}.",
+                Count = Count - UsedCount,
+                YearEdition = YearEdition
+            };
+        }
 
 
     }

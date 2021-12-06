@@ -14,10 +14,11 @@ namespace LibraryRestApi.Controllers
         {
         }
         [HttpGet()]
-        public async Task<List<Book>> GetBooks()
+        public async Task<List<BookModel>> GetBooks()
         {
             var list = await db.Books.ToListAsync();
-            return list;
+
+            return list.Select(x=>x.ToBookModel()).ToList();
         }
         [HttpPost()]
         public async Task<ActionResult<Book>> CreateBook(Book book)
