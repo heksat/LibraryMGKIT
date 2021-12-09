@@ -18,6 +18,16 @@ namespace LibraryRestApi.Models
         public Guid UserID { get; set; }
         [JsonIgnore()]
         public virtual User User { get; set; }
+        public BookLendingsModel ToBookLendingsModel()
+        {
+            return new BookLendingsModel()
+            {
+                ID = ID,
+                Name = Book.Title,
+                Author = $"{Book.Author.LName} {Book.Author.FName[0]}.",
+                YearEdition = Book.YearEdition
+            };
+        }
 
     }
 }

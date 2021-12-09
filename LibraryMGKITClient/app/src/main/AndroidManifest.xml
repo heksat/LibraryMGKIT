@@ -13,6 +13,12 @@
         android:theme="@style/Theme.LibraryMGKITClient"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".account"
+            android:exported="false" />
+        <activity
+            android:name=".BooksLendings"
+            android:exported="false" />
+        <activity
             android:name=".Books"
             android:exported="false" />
         <activity

@@ -14,5 +14,16 @@ class Menu : AppCompatActivity() {
             val intent = Intent(this,Books::class.java)
             startActivity(intent)
         }
+        var bLending = findViewById<Button>(R.id.bLendings)
+        bLending.setOnClickListener(){
+            val intent = Intent(this,BooksLendings::class.java)
+            startActivity(intent)
+        }
+        var bAccount = findViewById<Button>(R.id.bAccount)
+        bAccount.setOnClickListener(){
+            val intent = Intent(this, account::class.java)
+            startActivity(intent)
+        }
     }
+
 }

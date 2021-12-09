@@ -11,6 +11,7 @@ namespace LibraryRestApi.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public Guid RoleID { get; set; }
+        public int MaxBooks { get; set; }
         public virtual Role Role { get; set; }
         [JsonIgnore()]
         public virtual HashSet<Lending> Lendings { get; set; }

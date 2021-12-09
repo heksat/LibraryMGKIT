@@ -184,6 +184,9 @@ namespace LibraryRestApi.Migrations
                     b.Property<string>("LName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MaxBooks")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 

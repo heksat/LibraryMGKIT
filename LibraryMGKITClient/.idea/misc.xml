@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/source/repos/LibraryRestApi/LibraryMGKITClient/app/src/main/res/layout/activity_account.xml" value="0.25" />
         <entry key="..\:/Users/User/source/repos/LibraryRestApi/LibraryMGKITClient/app/src/main/res/layout/activity_books.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/User/source/repos/LibraryRestApi/LibraryMGKITClient/app/src/main/res/layout/activity_books_lendings.xml" value="0.196875" />
         <entry key="..\:/Users/User/source/repos/LibraryRestApi/LibraryMGKITClient/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/User/source/repos/LibraryRestApi/LibraryMGKITClient/app/src/main/res/layout/activity_menu.xml" value="0.22" />
+        <entry key="..\:/Users/User/source/repos/LibraryRestApi/LibraryMGKITClient/app/src/main/res/layout/booklendings.xml" value="0.33" />
         <entry key="..\:/Users/User/source/repos/LibraryRestApi/LibraryMGKITClient/app/src/main/res/layout/books.xml" value="0.33" />
         <entry key="..\:/Users/User/source/repos/LibraryRestApi/LibraryMGKITClient/app/src/main/res/layout/login.xml" value="0.1" />
       </map>

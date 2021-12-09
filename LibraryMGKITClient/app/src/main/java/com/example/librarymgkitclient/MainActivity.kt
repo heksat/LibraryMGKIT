@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.librarymgkitclient.Models.LoginModel
-import com.example.librarymgkitclient.RetroFit.Companion.cookie
 import com.example.librarymgkitclient.RetroFit.Companion.publicapi
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,12 +43,12 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     else{
-                        Toast.makeText(this@MainActivity, "Ошибка",Toast.LENGTH_LONG)
+                        Toast.makeText(this@MainActivity, "Ошибка",Toast.LENGTH_LONG).show()
                     }
                 }
 
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
-                    Toast.makeText(this@MainActivity, "Ошибка",Toast.LENGTH_SHORT)
+                    Toast.makeText(this@MainActivity, "Ошибка",Toast.LENGTH_SHORT).show()
                 }
             })
         }

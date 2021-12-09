@@ -3,11 +3,13 @@ package com.example.librarymgkitclient
 import android.os.Build.ID
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.librarymgkitclient.Models.BookModel
@@ -42,10 +44,11 @@ class Books : AppCompatActivity() {
 
         })
     }
+
     //Адаптер требуется для понимаиня вывода в recyclerView
-    class BooksAdapter(private val books:MutableList<BookModel>): RecyclerView.Adapter<BooksAdapter.BookViewHolder>(){
+    inner class BooksAdapter(public var books:MutableList<BookModel>): RecyclerView.Adapter<BooksAdapter.BookViewHolder>(){
         //View - все элементы активити наследуются от него
-        class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        inner class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
             //определяем свойства для onBIndViewHolder
             var Name = itemView.findViewById<TextView>(R.id.tvName)
             var Count = itemView.findViewById<TextView>(R.id.tvCount)
@@ -75,21 +78,49 @@ class Books : AppCompatActivity() {
             holder.Author.text = books[position].Author
             holder.YearEdition.text = (books[position].YearEdition ?: 0).toString()
             holder.bLending.setOnClickListener(){
-                holder.rv.adapter
                 fill(position)
                 notifyDataSetChanged()
             }
 
         }
-        fun fill(position: Int){
-            RetroFit.publicapi.lendingBook(IDModel(books[position].ID)).enqueue(object :Callback<Unit>{
-                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+        fun bookupdate(){
+            RetroFit.publicapi.getBooks().enqueue(object: Callback<MutableList<BookModel>> {
+                override fun onResponse(call: Call<MutableList<BookModel>>, response: Response<MutableList<BookModel>>) {
                     if (response.isSuccessful){
-                        notifyDataSetChanged()
+                        var result = response.body()
+                        if (result != null) {
+                            books.clear()
+                            books.addAll(result)
+                            notifyDataSetChanged()
+                        }
+
+                    }
+                }
+                override fun onFailure(call: Call<MutableList<BookModel>>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+        }
+        fun fill(position: Int){
+            RetroFit.publicapi.lendingBook(IDModel(books[position].ID)).enqueue(object :Callback<String?>{
+                override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                    if (response.isSuccessful){
+                        var result = response.body()
+                        if (result != null){
+                            Toast.makeText(this@Books,result,Toast.LENGTH_LONG).show()
+                        }
+                        else{
+                            bookupdate()
+                        }
+                    }
+                    else{
+                        Toast.makeText(this@Books,"Это он",Toast.LENGTH_LONG).show()
                     }
                 }
 
-                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                override fun onFailure(call: Call<String?>, t: Throwable) {
                     TODO("Not yet implemented")
                 }
 
