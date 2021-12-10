@@ -60,8 +60,7 @@ class BooksLendings : AppCompatActivity(), com.example.librarymgkitclient.interf
             else {
                 holder.back.setOnClickListener() {
                     var model = IDModel(books[position].ID)
-                    //presenter?.Edit(model){if (it!=null )Toast.makeText(this@BooksLendings,it,Toast.LENGTH_LONG).show()}
-                    holder.back.setEnabled(!holder.back.isEnabled)
+                    presenter?.Edit(model){if (it!=null )Toast.makeText(this@BooksLendings,it,Toast.LENGTH_LONG).show() else update() }
                 }
             }
 

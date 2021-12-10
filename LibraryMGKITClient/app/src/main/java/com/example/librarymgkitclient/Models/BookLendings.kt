@@ -45,7 +45,7 @@ class BookLendings(var presenter: Presenter): Model {
                 if (response.isSuccessful){
                     var result = response.body()
                     if (result != null) {
-                        presenter.onSuccess("",result)
+                        onSuccess(result)
                     }
 
                 }

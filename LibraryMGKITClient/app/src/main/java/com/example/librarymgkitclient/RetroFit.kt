@@ -26,7 +26,7 @@ class RetroFit {
             okHttpClient.cookieJar(MyCookieJar())
          //   okHttpClient.interceptors().add(ReceivedCookiesInterceptor())
         }
-        var retrofit = Retrofit.Builder().baseUrl("http://192.168.0.202:57702/")
+        var retrofit = Retrofit.Builder().baseUrl("http://192.168.0.25:57702/")
             .client(okHttpClient.build()).addConverterFactory(
             GsonConverterFactory.create()).build()
         var publicapi = retrofit.create(APILibraryMGKIT::class.java)

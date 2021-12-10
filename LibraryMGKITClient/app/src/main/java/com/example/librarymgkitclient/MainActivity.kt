@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     var result = response.isSuccessful
                     if(result) {
-                        CookieManager.getInstance().getCookie("http://192.168.0.202:57702/")
+                        CookieManager.getInstance().getCookie("http://192.168.0.25:57702/")
                         startActivity(intent)
                     }
                     else{

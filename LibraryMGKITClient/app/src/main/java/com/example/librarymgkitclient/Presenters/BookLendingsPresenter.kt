@@ -10,13 +10,11 @@ class BookLendingsPresenter(var activity: View):Presenter {
     private var model = BookLendings(this)
     override fun Edit(model:Model,onSuccess: (error:String?) -> Unit) {
         this.model.Edit(model, onSuccess)
-        activity.update()
-
     }
     override fun Get(onSuccess: (list: MutableList<BookLendings>) -> Unit) {
         model.Get(onSuccess)
     }
-    override fun init(){
+    override fun init() {
         activity.initView()
     }
     override fun onSuccess(message: String?, allCountriesData: MutableList<BookLendings>) {
