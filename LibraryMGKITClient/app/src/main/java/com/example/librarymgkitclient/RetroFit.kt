@@ -68,6 +68,8 @@ public interface APILibraryMGKIT{
     fun getUser():Call<UserModel>
     @POST("/api/User")
     fun postUser(@Body model: PostUserModel):Call<Unit>
+    @POST("/api/Lendings/Back")
+    fun backBook(@Body id:IDModel):Call<String?>
 
 
 }

@@ -5,42 +5,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.librarymgkitclient.Enums.enumStatusBook
 import com.example.librarymgkitclient.Models.BookLendings
-import com.example.librarymgkitclient.Models.BookModel
 import com.example.librarymgkitclient.Models.IDModel
+import com.example.librarymgkitclient.Presenters.BookLendingsPresenter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
-class BooksLendings : AppCompatActivity() {
+class BooksLendings : AppCompatActivity(), com.example.librarymgkitclient.interfaces.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books_lendings)
-        val RecyclerView = findViewById<RecyclerView>(R.id.rvBookLendings)
-        var layout = LinearLayoutManager(this)
-        RecyclerView.layoutManager = layout
-
-        RetroFit.publicapi.getBookLendings().enqueue(object: Callback<MutableList<BookLendings>> {
-            override fun onResponse(call: Call<MutableList<BookLendings>>, response: Response<MutableList<BookLendings>>) {
-                if (response.isSuccessful){
-                    var result = response.body()
-                    if (result != null) {
-                        RecyclerView.adapter = BooksLendingsAdapter(result)
-                    }
-
-                }
-            }
-            override fun onFailure(call: Call<MutableList<BookLendings>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
+        presenter =  BookLendingsPresenter(this)
+        presenter?.init()
     }
     inner class BooksLendingsAdapter(var books:MutableList<BookLendings>): RecyclerView.Adapter<BooksLendingsAdapter.BookViewHolder>(){
         //View - все элементы активити наследуются от него
@@ -49,7 +34,7 @@ class BooksLendings : AppCompatActivity() {
             var Name = itemView.findViewById<TextView>(R.id.tvName)
             var Author = itemView.findViewById<TextView>(R.id.tvAuthor)
             var YearEdition = itemView.findViewById<TextView>(R.id.tvYearEdition)
-
+            var back = itemView.findViewById<Button>(R.id.bBackLending)
         }
         //отсюда обратимся к самому адаптеру
         override fun onCreateViewHolder(
@@ -69,11 +54,36 @@ class BooksLendings : AppCompatActivity() {
             holder.Name.text = books[position].Name
             holder.Author.text = books[position].Author
             holder.YearEdition.text = (books[position].YearEdition ?: 0).toString()
+            if (books[position].Status == enumStatusBook.ReturnRequest || books[position].Status == enumStatusBook.Returned){
+                holder.back.setEnabled(false)
+            }
+            else {
+                holder.back.setOnClickListener() {
+                    var model = IDModel(books[position].ID)
+                    //presenter?.Edit(model){if (it!=null )Toast.makeText(this@BooksLendings,it,Toast.LENGTH_LONG).show()}
+                    holder.back.setEnabled(!holder.back.isEnabled)
+                }
+            }
 
         }
-
         override fun getItemCount(): Int = books.size
+    }
 
-
+    override fun onGetDataSuccess(message: String?, allCountriesData: MutableList<BookLendings>) {
+        val RecyclerView = findViewById<RecyclerView>(R.id.rvBookLendings)
+        val Adapter = BooksLendingsAdapter(allCountriesData)
+        RecyclerView.setAdapter(Adapter)
+    }
+    override fun update() {
+        val RecyclerView = findViewById<RecyclerView>(R.id.rvBookLendings)
+        presenter?.Get{RecyclerView.adapter = BooksLendingsAdapter(it)}
+        RecyclerView.adapter?.notifyDataSetChanged()
+    }
+    private var presenter:BookLendingsPresenter? = null
+    override fun initView() {
+        val RecyclerView = findViewById<RecyclerView>(R.id.rvBookLendings)
+        var layout = LinearLayoutManager(this)
+        RecyclerView.layoutManager = layout
+        presenter?.Get{RecyclerView.adapter = BooksLendingsAdapter(it)}
     }
 }

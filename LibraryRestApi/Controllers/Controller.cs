@@ -27,7 +27,7 @@ namespace LibraryRestApi.Controllers
             // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.ID.ToString()),
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Code ?? "")
             };
             // создаем объект ClaimsIdentity

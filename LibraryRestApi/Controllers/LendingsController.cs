@@ -21,9 +21,9 @@ namespace LibraryRestApi.Controllers
             var book = db.Books.Find(model.ID);
             if (book != null)
             {
-                var email = HttpContext.User.Identity.Name;
-                var user = db.Users.Where(x => x.Email == email).FirstOrDefault();
-                if (user.Lendings.Count() < user.MaxBooks)
+                var id = Guid.Parse(HttpContext.User.Identity.Name);
+                var user = db.Users.Find(id);
+                if (user.Lendings.Where(x=>x.Status!= LendingStatus.Returned).Count() < user.MaxBooks)
                 {
                     if (user != null)
                     {
@@ -48,8 +48,8 @@ namespace LibraryRestApi.Controllers
         [HttpGet()]
         public async Task<List<BookLendingsModel>> GetLendingsBooks()
         {
-            var name = User.Identity.Name;
-            var user = db.Users.Where(x=>x.Email==name).FirstOrDefault();
+            var id = Guid.Parse(User.Identity.Name);
+            var user = db.Users.Find(id);
             if (user != null)
             {
                 var list = await db.Lendings.Where(x=>x.UserID==user.ID).ToListAsync();
@@ -58,6 +58,30 @@ namespace LibraryRestApi.Controllers
             }
             return null;
         }
+        [HttpPost()]
+        [Route("Back")]
+        public async Task<ActionResult<string>> BackBook(IDModel id)
+        {
+            var selectedBook = db.Lendings.Find(id.ID);
+            if(selectedBook != null)
+            {
+                switch (selectedBook.Status) {
+                    case Enums.LendingStatus.OnHands:
+                        selectedBook.Status = LendingStatus.ReturnRequest; break;
+                    case LendingStatus.Reserved:
+                        {
+                            selectedBook.Status = LendingStatus.Returned;
+                            selectedBook.Book.UsedCount--;
+                        } break;
+                    default:
+                        return Ok("\"Неопознанный статус ошибки\"");
+                }
+                await db.SaveChangesAsync();
+                return Ok(null);
+            }
+            return BadRequest();
+        }
+
 
     }
 }

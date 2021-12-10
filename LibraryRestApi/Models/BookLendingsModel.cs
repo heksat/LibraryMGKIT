@@ -10,6 +10,7 @@ namespace LibraryRestApi.Models
       public string Author { get; set; }
       public string Name { get; set; }
       public int YearEdition { get; set; }
+      public Enums.LendingStatus Status { get; set; }
 
     }
 }

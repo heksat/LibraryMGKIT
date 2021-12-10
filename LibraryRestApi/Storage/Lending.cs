@@ -25,7 +25,8 @@ namespace LibraryRestApi.Models
                 ID = ID,
                 Name = Book.Title,
                 Author = $"{Book.Author.LName} {Book.Author.FName[0]}.",
-                YearEdition = Book.YearEdition
+                YearEdition = Book.YearEdition,
+                Status = Status
             };
         }
 

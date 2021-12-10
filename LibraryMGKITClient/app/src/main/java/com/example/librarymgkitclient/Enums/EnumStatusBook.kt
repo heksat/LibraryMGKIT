@@ -1,4 +1,4 @@
-package com.example.librarymgkitclient
+package com.example.librarymgkitclient.Enums
 
 import com.google.gson.annotations.SerializedName
 
