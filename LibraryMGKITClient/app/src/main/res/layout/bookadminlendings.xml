@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvLoginUserAdm"
+        android:layout_width="69dp"
+        android:layout_height="59dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvNameAdm"
+        android:layout_width="86dp"
+        android:layout_height="60dp"
+        android:layout_weight="1" />
+
+
+    <TextView
+        android:id="@+id/tvAuthorAdm"
+        android:layout_width="72dp"
+        android:layout_height="60dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvYearEditionAdm"
+        android:layout_width="79dp"
+        android:layout_height="59dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/bBackLendingAdm"
+        android:layout_width="67dp"
+        android:layout_height="85dp"
+        android:layout_weight="1"
+        android:text="В" />
+
+    <Button
+        android:id="@+id/bGetLending"
+        android:layout_width="56dp"
+        android:layout_height="85dp"
+        android:layout_weight="1"
+        android:text="Д" />
+
+</LinearLayout>

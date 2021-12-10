@@ -12,11 +12,12 @@ namespace LibraryRestApi.ViewModel
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Pass { get; set; }
+        public string LName { get; set; }
+        public string FName { get; set; }
+        public string SName { get; set; }
+        public char Gender { get; set; }
+        public string Birthday { get; set; }
 
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Пароль введен неверно")]
-        public string ConfirmPassword { get; set; }
     }
 }

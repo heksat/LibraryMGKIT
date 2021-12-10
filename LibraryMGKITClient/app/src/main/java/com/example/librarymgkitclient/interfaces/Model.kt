@@ -7,5 +7,5 @@ interface Model {
     fun Create()
     fun Edit(model:Model,onSuccess: (error:String?) -> Unit)
     fun Delete()
-    fun Get(onSuccess: (list: MutableList<BookLendings>) -> Unit)
+    fun Get(onSuccess: (list: MutableList<Any?>) -> Unit)
 }

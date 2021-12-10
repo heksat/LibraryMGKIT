@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryRestApi.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -15,7 +16,7 @@ namespace LibraryRestApi.Models
         /// <summary>
         /// Код роли 
         /// </summary>
-        public string Code { get; set; }
+        public RoleCode Code { get; set; }
         [JsonIgnore()]
         public virtual HashSet<User> Users { get; set; }
 

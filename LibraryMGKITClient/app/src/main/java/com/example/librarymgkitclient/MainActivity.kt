@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+        var butreg = findViewById<Button>(R.id.bReg)
+        butreg.setOnClickListener(){
+            val intent = Intent(this,register::class.java)
+            startActivity(intent)
+        }
     }
 }
 class Author{

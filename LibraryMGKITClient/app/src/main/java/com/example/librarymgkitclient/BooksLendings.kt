@@ -68,14 +68,14 @@ class BooksLendings : AppCompatActivity(), com.example.librarymgkitclient.interf
         override fun getItemCount(): Int = books.size
     }
 
-    override fun onGetDataSuccess(message: String?, allCountriesData: MutableList<BookLendings>) {
+    override fun onGetDataSuccess(message: String?, allCountriesData: MutableList<Any?>) {
         val RecyclerView = findViewById<RecyclerView>(R.id.rvBookLendings)
-        val Adapter = BooksLendingsAdapter(allCountriesData)
+        val Adapter = BooksLendingsAdapter(allCountriesData as MutableList<BookLendings>)
         RecyclerView.setAdapter(Adapter)
     }
     override fun update() {
         val RecyclerView = findViewById<RecyclerView>(R.id.rvBookLendings)
-        presenter?.Get{RecyclerView.adapter = BooksLendingsAdapter(it)}
+        presenter?.Get{RecyclerView.adapter = BooksLendingsAdapter(it as MutableList<BookLendings>)}
         RecyclerView.adapter?.notifyDataSetChanged()
     }
     private var presenter:BookLendingsPresenter? = null
@@ -83,6 +83,6 @@ class BooksLendings : AppCompatActivity(), com.example.librarymgkitclient.interf
         val RecyclerView = findViewById<RecyclerView>(R.id.rvBookLendings)
         var layout = LinearLayoutManager(this)
         RecyclerView.layoutManager = layout
-        presenter?.Get{RecyclerView.adapter = BooksLendingsAdapter(it)}
+        presenter?.Get{RecyclerView.adapter = BooksLendingsAdapter(it as MutableList<BookLendings>)}
     }
 }

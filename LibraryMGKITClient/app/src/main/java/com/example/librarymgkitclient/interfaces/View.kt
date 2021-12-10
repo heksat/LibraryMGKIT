@@ -5,5 +5,5 @@ import com.example.librarymgkitclient.Models.BookLendings
 interface View {
     fun update()
     fun initView()
-    fun onGetDataSuccess(message: String?, allCountriesData: MutableList<BookLendings>)
+    fun onGetDataSuccess(message: String?, allCountriesData: MutableList<Any?>)
 }

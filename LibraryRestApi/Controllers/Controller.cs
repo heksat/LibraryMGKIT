@@ -28,7 +28,7 @@ namespace LibraryRestApi.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.ID.ToString()),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Code ?? "")
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, ((int)user.Role?.Code).ToString() ?? ((int)Enums.RoleCode.None).ToString())
             };
             // создаем объект ClaimsIdentity
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

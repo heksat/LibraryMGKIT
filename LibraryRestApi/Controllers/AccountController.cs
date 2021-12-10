@@ -36,18 +36,29 @@ namespace LibraryRestApi.Controllers
             return BadRequest(model);
         }
         [HttpPost]
+        [AllowAnonymous()]
         [Route("Register")]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
             if (user == null)
             {
+                var role = db.Roles.Where(x => x.Code == Enums.RoleCode.Member).FirstOrDefault();
                 // добавляем пользователя в бд
-                var newuser = new User { Email = model.Email, Password = model.Password };
+                var newuser = new User {LName = model.LName,
+                    FName = model.FName,
+                    SName = model.SName,
+                    Email = model.Email,
+                    Password = model.Pass,
+                    RoleID = role.ID,
+                    BirthDay = DateTime.Parse(model.Birthday),
+                    Gender = model.Gender,
+                    MaxBooks = 3
+                };
                 db.Users.Add(newuser);
                 await db.SaveChangesAsync();
 
-                await Authenticate(newuser); // аутентификация
+               // await Authenticate(newuser); // аутентификация
 
                 return Ok();
             }

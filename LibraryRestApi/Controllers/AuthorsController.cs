@@ -16,14 +16,14 @@ namespace LibraryRestApi.Controllers
         }
         [HttpGet()]
         [Route("authors")]
-       // [Authorize(Roles = "0")]
+        [Authorize(Roles = "1")]
         public List<Author> Get()
         {
             return db.Authors.ToList();
         }
         [HttpPost()]
         [Route("author")]
-        [Authorize(Roles = "0")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> Post(AuthorModel model)
         {
             var entity = model.AsEntity() as Author;
@@ -46,7 +46,7 @@ namespace LibraryRestApi.Controllers
         }
         [HttpPut()]
         [Route("author")]
-        [Authorize(Roles = "0")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> Edit()
         {
             return Ok();

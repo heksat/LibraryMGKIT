@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LibraryMGKITClient</string>
+    <string-array name="Genders">
+        <item>М</item>
+        <item>Ж</item>
+    </string-array>
 </resources>

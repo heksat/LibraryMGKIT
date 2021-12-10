@@ -13,6 +13,15 @@
         android:theme="@style/Theme.LibraryMGKITClient"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AdminLendings"
+            android:exported="false" />
+        <activity
+            android:name=".AdminMenu"
+            android:exported="false" />
+        <activity
+            android:name=".register"
+            android:exported="false" />
+        <activity
             android:name=".account"
             android:exported="false" />
         <activity

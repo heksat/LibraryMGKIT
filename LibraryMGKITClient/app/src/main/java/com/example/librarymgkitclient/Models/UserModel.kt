@@ -8,5 +8,5 @@ class UserModel {
     var FName:String? = null
     var SName:String? = null
     var Email:String? =null
-    var RoleID:UUID?= null
+    var RoleCode:Int?= null
 }

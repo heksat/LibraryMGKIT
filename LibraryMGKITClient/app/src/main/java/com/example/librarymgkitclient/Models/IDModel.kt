@@ -21,7 +21,7 @@ class IDModel(newid:UUID?):Model {
         TODO("Not yet implemented")
     }
 
-    override fun Get(onSuccess: (list: MutableList<BookLendings>) -> Unit) {
+    override fun Get(onSuccess: (list: MutableList<Any?>) -> Unit) {
         TODO("Not yet implemented")
     }
 }

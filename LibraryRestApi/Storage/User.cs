@@ -15,6 +15,7 @@ namespace LibraryRestApi.Models
         public virtual Role Role { get; set; }
         [JsonIgnore()]
         public virtual HashSet<Lending> Lendings { get; set; }
+        public int RoleCode => (int)Role.Code;
 
     }
 }
