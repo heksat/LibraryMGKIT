@@ -43,12 +43,12 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     else{
-                        Toast.makeText(this@MainActivity, "Ошибка",Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@MainActivity, getString(R.string.authError),Toast.LENGTH_LONG).show()
                     }
                 }
 
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
-                    Toast.makeText(this@MainActivity, "Ошибка",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, getString(R.string.authError),Toast.LENGTH_SHORT).show()
                 }
             })
         }

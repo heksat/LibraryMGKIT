@@ -113,9 +113,9 @@ namespace LibraryRestApi.Controllers
                 switch (selectedBook.Status) {
                     case Enums.LendingStatus.ReturnRequest:
                         {
-                            selectedBook.Status = LendingStatus.Returned; break;
+                            selectedBook.Status = LendingStatus.Returned; 
                             selectedBook.Book.UsedCount--;
-                        }
+                        }break;
                     case LendingStatus.Reserved:
                         {
                             selectedBook.Status = LendingStatus.OnHands;

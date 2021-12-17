@@ -1,5 +1,6 @@
 package com.example.librarymgkitclient.Models
 
+import androidx.room.Entity
 import com.example.librarymgkitclient.RetroFit
 import com.example.librarymgkitclient.Enums.enumStatusBook
 import com.example.librarymgkitclient.Presenters.BookLendingsPresenter
@@ -9,8 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-
-class BookLendings(var presenter: Presenter): Model {
+data class BookLendings(var presenter: Presenter): Model {
     var ID: UUID? = null
     var Author: String? = null
     var Name: String? = null

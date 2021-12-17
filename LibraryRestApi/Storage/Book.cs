@@ -39,6 +39,7 @@ namespace LibraryRestApi.Models
         public Guid AuthorID { get; set; }
         [JsonIgnore()]
         public virtual Author Author { get; set; }
+        public byte[] Image { get; set; }
 
         public BookModel ToBookModel()
         {
@@ -48,8 +49,9 @@ namespace LibraryRestApi.Models
                 Name = Title,
                 Author = $"{Author.LName} {Author.FName[0]}.",
                 Count = Count - UsedCount,
-                YearEdition = YearEdition
-            };
+                YearEdition = YearEdition,
+                Image = (Image!=null)? Convert.ToBase64String(Image): String.Empty
+                };
         }
 
 

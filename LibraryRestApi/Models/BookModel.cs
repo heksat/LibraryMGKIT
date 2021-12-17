@@ -11,5 +11,6 @@ namespace LibraryRestApi.Models
       public string Name { get; set; }
       public int Count { get; set; }
       public int YearEdition { get; set; }
+      public string Image { get; set; }
     }
 }
